@@ -4,7 +4,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 import Text from "./text";
 
 export const buttonVariants = cva(
-  `flex items-center justify-center cursor-pointer transition rounded-lg group gap-2`,
+  `flex items-center justify-center cursor-pointer transition rounded-lg group
+   gap-2`,
   {
     variants: {
       variant: {
@@ -31,7 +32,7 @@ export const buttonIconVariants = cva("transition", {
       primary: "fill-pink-base",
     },
     size: {
-      md: "w-5 h-5",
+      md: "h-5 w-5",
     },
   },
   defaultVariants: {
@@ -39,12 +40,6 @@ export const buttonIconVariants = cva("transition", {
     size: "md",
   },
 });
-
-interface ButtonProps
-  extends Omit<React.ComponentProps<"button">, "size" | "disabled">,
-    VariantProps<typeof buttonVariants> {
-  icon?: React.ComponentProps<typeof Icon>["svg"];
-}
 
 export const buttonTextVariants = cva("", {
   variants: {
@@ -56,6 +51,12 @@ export const buttonTextVariants = cva("", {
     variant: "primary",
   },
 });
+
+interface ButtonProps
+  extends Omit<React.ComponentProps<"button">, "size" | "disabled">, //omite do button o size e disabled, vai ficar com o sva
+    VariantProps<typeof buttonVariants> {
+  icon?: React.ComponentProps<typeof Icon>["svg"];
+}
 
 export default function Button({
   variant,
@@ -71,7 +72,7 @@ export default function Button({
       className={buttonVariants({ variant, size, disabled, className })}
       {...props}
     >
-      {IconComponent && (
+      {IconComponent && ( //ícone lado esquerdo. Exite ícone?Então...
         <Icon
           svg={IconComponent}
           className={buttonIconVariants({ variant, size })}

@@ -10,7 +10,7 @@ export const textVariants = cva("font-sans text-gray-400", {
     },
   },
   defaultVariants: {
-    variant: "body-md",
+    variant: "body-md", //variação padrão,se não for definido variant
   },
 });
 
@@ -22,7 +22,7 @@ interface TextProps extends VariantProps<typeof textVariants> {
 
 export default function Text({
   as = "span",
-  variant,
+  variant, //vindo do cva
   className,
   children,
   ...props
@@ -30,9 +30,9 @@ export default function Text({
   return React.createElement(
     as,
     {
-      className: textVariants({ variant, className }),
+      className: textVariants({ variant, className }), //passando os 3 tipos de variação, e o className é um tipo que pode ser customizado
       ...props,
-    },  
+    },
     children
   );
 }

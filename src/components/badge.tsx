@@ -2,6 +2,7 @@ import Text from "./text";
 import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
 
+//define o background de cor
 export const badgeVariants = cva("inline-flex items-center rounded-full", {
   variants: {
     variant: {
@@ -18,6 +19,7 @@ export const badgeVariants = cva("inline-flex items-center rounded-full", {
   },
 });
 
+//define o texto
 export const badgeTextVariants = cva("", {
   variants: {
     variant: {
