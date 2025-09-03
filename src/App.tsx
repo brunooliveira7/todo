@@ -12,57 +12,60 @@ import ButtonIcon from "./components/button-icon";
 import InputText from "./components/input-text";
 import InputCheckBox from "./components/input-checkbox";
 import Card from "./components/card";
+import Container from "./components/container";
 
 export default function App() {
   return (
-    <div className="grid gap-10">
-      <div className="flex flex-col gap-4">
-        <Text variant="body-sm-bold" className="text-pink-base">
-          ToDo List
-        </Text>
-        <Text className="text-green-base">ToDo List</Text>
-        <Text variant="body-md-bold">ToDo List</Text>
-      </div>
+    <Container>
+      <div className="grid gap-10">
+        <div className="flex flex-col gap-4">
+          <Text variant="body-sm-bold" className="text-pink-base">
+            ToDo List
+          </Text>
+          <Text className="text-green-base">ToDo List</Text>
+          <Text variant="body-md-bold">ToDo List</Text>
+        </div>
 
-      <div className="flex gap-1">
-        <Icon svg={TrashIcon} className="fill-pink-base" />
-        <Icon svg={CheckIcon} className="fill-pink-base" />
-        <Icon svg={PlusIcon} className="fill-pink-base" />
-        <Icon svg={SpinnerIcon} animate />
-        <Icon svg={PencilIcon} className="fill-pink-base" />
-        <Icon svg={XIcon} className="fill-pink-base" />
-      </div>
+        <div className="flex gap-1">
+          <Icon svg={TrashIcon} className="fill-pink-base" />
+          <Icon svg={CheckIcon} className="fill-pink-base" />
+          <Icon svg={PlusIcon} className="fill-pink-base" />
+          <Icon svg={SpinnerIcon} animate />
+          <Icon svg={PencilIcon} className="fill-pink-base" />
+          <Icon svg={XIcon} className="fill-pink-base" />
+        </div>
 
-      <div className="flex gap-1">
-        <Badge variant="secondary" size="sm">
-          5
-        </Badge>
-        <Badge variant="primary" size="sm">
-          2 de 5
-        </Badge>
-      </div>
+        <div className="flex gap-1">
+          <Badge variant="secondary" size="sm">
+            5
+          </Badge>
+          <Badge variant="primary" size="sm">
+            2 de 5
+          </Badge>
+        </div>
 
-      <div>
-        <Button icon={PlusIcon}>Nova tarefa</Button>
-      </div>
+        <div>
+          <Button icon={PlusIcon}>Nova tarefa</Button>
+        </div>
 
-      <div className="flex gap-1">
-        <ButtonIcon icon={TrashIcon} />
-        <ButtonIcon icon={CheckIcon} variant="secondary" />
-        <ButtonIcon icon={PencilIcon} variant="tertiary" />
-      </div>
+        <div className="flex gap-1">
+          <ButtonIcon icon={TrashIcon} />
+          <ButtonIcon icon={CheckIcon} variant="secondary" />
+          <ButtonIcon icon={PencilIcon} variant="tertiary" />
+        </div>
 
-      <div>
-        <InputText />
-      </div>
+        <div>
+          <InputText />
+        </div>
 
-      <div>
-        <InputCheckBox />
-      </div>
+        <div>
+          <InputCheckBox />
+        </div>
 
-      <div>
-        <Card size="md">Olá Mundo</Card>
+        <div>
+          <Card size="md">Olá Mundo</Card>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
