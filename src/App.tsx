@@ -11,6 +11,7 @@ import Button from "./components/button";
 import ButtonIcon from "./components/button-icon";
 import InputText from "./components/input-text";
 import InputCheckBox from "./components/input-checkbox";
+import Card from "./components/card";
 
 export default function App() {
   return (
@@ -47,8 +48,8 @@ export default function App() {
 
       <div className="flex gap-1">
         <ButtonIcon icon={TrashIcon} />
-        <ButtonIcon icon={CheckIcon} variant="secondary"/>
-        <ButtonIcon icon={PencilIcon} variant="tertiary"/>
+        <ButtonIcon icon={CheckIcon} variant="secondary" />
+        <ButtonIcon icon={PencilIcon} variant="tertiary" />
       </div>
 
       <div>
@@ -57,6 +58,10 @@ export default function App() {
 
       <div>
         <InputCheckBox />
+      </div>
+
+      <div>
+        <Card size="md">Olá Mundo</Card>
       </div>
     </div>
   );
