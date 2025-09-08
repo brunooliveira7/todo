@@ -8,7 +8,7 @@ export default function useTask() {
     setTasks([
       ...tasks,
       {
-        id: Math.random().toString(36).substring(2, 9), //cria id número e letra
+        id: Math.random().toString(36).substring(2, 9), //cria id de n e letras
         title: "",
         state: TaskState.Creating,
       },
