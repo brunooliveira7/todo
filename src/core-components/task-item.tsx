@@ -21,14 +21,18 @@ export default function TaskItem({ task }: TaskItemProps) {
     task?.state === TaskState.Creating
   );
   //coloca o valor do input na var
-  const [taskTitle, setTaskTitle] = useState(task?.title || "");
-  const { updateTask } = useTask();
+  const [taskTitle, setTaskTitle] = useState(task?.title || ""); //aparece o texto da task para editar
+  const { updateTask, updateTaskStatus, deleteTask } = useTask();
 
   function handleEdit() {
     setIsEditing(true);
   }
 
   function handleExitEditTask() {
+    if (task.state === TaskState.Creating) {
+      deleteTask(task.id);
+    }
+
     setIsEditing(false);
   }
 
@@ -45,19 +49,34 @@ export default function TaskItem({ task }: TaskItemProps) {
     setIsEditing(false);
   }
 
+  function handleChangeTaskStatus(e: React.ChangeEvent<HTMLInputElement>) {
+    const checked = e.target.checked;
+
+    updateTaskStatus(task.id, checked); //muda para checked no click
+  }
+
+  function handleClickDeleteTask() {
+    deleteTask(task.id); //deleta a task
+  }
+
   return (
     <Card size="md">
       {!isEditing ? (
         <div className="flex items-center gap-4">
           <InputCheckBox
-            value={task?.concluded?.toString()}
             checked={task?.concluded}
+            onChange={handleChangeTaskStatus}
           />
           <Text className={cx("flex-1", { "line-through": task?.concluded })}>
             {task?.title}
           </Text>
           <div className="flex gap-1">
-            <ButtonIcon type="button" icon={TrashIcon} variant="tertiary" />
+            <ButtonIcon
+              onClick={handleClickDeleteTask}
+              type="button"
+              icon={TrashIcon}
+              variant="tertiary"
+            />
             <ButtonIcon
               type="button"
               icon={PencilIcon}
