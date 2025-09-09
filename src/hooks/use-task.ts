@@ -15,7 +15,19 @@ export default function useTask() {
     ]);
   }
 
+  //colocar no localStorage
+  function updateTask(id: string, payload: { title: Task["title"] }) {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id
+          ? { ...task, state: TaskState.Created, ...payload } //payload = title e muda o state para Created
+          : task
+      )
+    );
+  }
+
   return {
     prepareTask,
+    updateTask,
   };
 }
