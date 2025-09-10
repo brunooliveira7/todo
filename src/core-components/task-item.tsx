@@ -22,6 +22,7 @@ export default function TaskItem({ task }: TaskItemProps) {
   );
   //coloca o valor do input na var
   const [taskTitle, setTaskTitle] = useState(task?.title || ""); //aparece o texto da task para editar
+  
   const { updateTask, updateTaskStatus, deleteTask } = useTask();
 
   function handleEdit() {
@@ -40,7 +41,7 @@ export default function TaskItem({ task }: TaskItemProps) {
     setTaskTitle(e.target.value || "");
   }
 
-  //na submissão do form - clicar no checkIcon
+  //na submissão do form - clicar no checkIcon - coleta dado do input
   function handleSaveTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
