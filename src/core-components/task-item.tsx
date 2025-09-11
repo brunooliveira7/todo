@@ -25,7 +25,13 @@ export default function TaskItem({ task, loading }: TaskItemProps) {
   //coloca o valor do input na var
   const [taskTitle, setTaskTitle] = useState(task?.title || ""); //aparece o texto da task para editar
 
-  const { updateTask, updateTaskStatus, deleteTask } = useTask();
+  const {
+    updateTask,
+    updateTaskStatus,
+    deleteTask,
+    isUpdatingTask,
+    isDeletingTask,
+  } = useTask();
 
   function handleEdit() {
     setIsEditing(true);
@@ -44,10 +50,10 @@ export default function TaskItem({ task, loading }: TaskItemProps) {
   }
 
   //na submissão do form - clicar no checkIcon - coleta dado do input
-  function handleSaveTask(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSaveTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    updateTask(task.id, { title: taskTitle }); //input vai para title no LS e o state muda para Created
+    await updateTask(task.id, { title: taskTitle }); //input vai para title no LS e o state muda para Created
 
     setIsEditing(false);
   }
@@ -58,8 +64,8 @@ export default function TaskItem({ task, loading }: TaskItemProps) {
     updateTaskStatus(task.id, checked); //muda para checked no click
   }
 
-  function handleClickDeleteTask() {
-    deleteTask(task.id); //deleta a task
+  async function handleClickDeleteTask() {
+    await deleteTask(task.id); //deleta a task
   }
 
   return (
@@ -85,6 +91,7 @@ export default function TaskItem({ task, loading }: TaskItemProps) {
               icon={TrashIcon}
               variant="tertiary"
               loading={loading}
+              handling={isDeletingTask}
             />
             <ButtonIcon
               type="button"
@@ -111,7 +118,12 @@ export default function TaskItem({ task, loading }: TaskItemProps) {
               variant="secondary"
               onClick={handleExitEditTask}
             />
-            <ButtonIcon type="submit" icon={CheckIcon} variant="primary" />
+            <ButtonIcon
+              type="submit"
+              icon={CheckIcon}
+              variant="primary"
+              handling={isUpdatingTask}
+            />
           </div>
         </form>
       )}
