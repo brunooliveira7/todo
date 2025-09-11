@@ -11,18 +11,20 @@ import InputText from "../components/input-text";
 import { TaskState, type Task } from "../models/task";
 import { cx } from "class-variance-authority";
 import useTask from "../hooks/use-task";
+import Skeleton from "../components/skeleton";
 
 interface TaskItemProps {
   task: Task;
+  loading?: boolean;
 }
 
-export default function TaskItem({ task }: TaskItemProps) {
+export default function TaskItem({ task, loading }: TaskItemProps) {
   const [isEditing, setIsEditing] = useState(
     task?.state === TaskState.Creating
   );
   //coloca o valor do input na var
   const [taskTitle, setTaskTitle] = useState(task?.title || ""); //aparece o texto da task para editar
-  
+
   const { updateTask, updateTaskStatus, deleteTask } = useTask();
 
   function handleEdit() {
@@ -67,22 +69,29 @@ export default function TaskItem({ task }: TaskItemProps) {
           <InputCheckBox
             checked={task?.concluded}
             onChange={handleChangeTaskStatus}
+            loading={loading}
           />
-          <Text className={cx("flex-1", { "line-through": task?.concluded })}>
-            {task?.title}
-          </Text>
+          {!loading ? (
+            <Text className={cx("flex-1", { "line-through": task?.concluded })}>
+              {task?.title}
+            </Text>
+          ) : (
+            <Skeleton className="flex-1 h-6" />
+          )}
           <div className="flex gap-1">
             <ButtonIcon
               onClick={handleClickDeleteTask}
               type="button"
               icon={TrashIcon}
               variant="tertiary"
+              loading={loading}
             />
             <ButtonIcon
               type="button"
               icon={PencilIcon}
               variant="tertiary"
               onClick={handleEdit}
+              loading={loading}
             />
           </div>
         </div>
