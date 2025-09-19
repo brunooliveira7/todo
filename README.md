@@ -50,3 +50,9 @@ Essa abordagem, combinada com o **CVA**, garante **consistência visual** e faci
 
 ---
 
+### ✍️ Autor
+Desenvolvido por Bruno Oliveira 🧠
+
+## 📝 Licença
+Este projeto está sob a licença MIT.
+
